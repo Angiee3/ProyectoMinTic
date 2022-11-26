@@ -4,3 +4,4 @@ export * from './cliente.model';
 export * from './vehiculo.model';
 export * from './venta.model';
 export * from './alquiler.model';
+export * from './credenciales.model';
