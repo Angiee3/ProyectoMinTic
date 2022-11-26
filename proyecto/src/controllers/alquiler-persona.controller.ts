@@ -17,7 +17,7 @@ export class AlquilerPersonaController {
     public alquilerRepository: AlquilerRepository,
   ) { }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @get('/alquilers/{id}/persona', {
     responses: {
       '200': {

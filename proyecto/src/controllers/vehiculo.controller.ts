@@ -20,7 +20,7 @@ export class VehiculoController {
     public vehiculoRepository : VehiculoRepository,
   ) {}
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @post('/vehiculos')
   @response(200, {
     description: 'Vehiculo model instance',

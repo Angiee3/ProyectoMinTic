@@ -20,7 +20,7 @@ export class AlquilerController {
     public alquilerRepository : AlquilerRepository,
   ) {}
 
-  //@authenticate("asesor, admin, persona")
+  @authenticate("asesor, admin, persona")
   @post('/alquileres')
   @response(200, {
     description: 'Alquiler model instance',
@@ -42,7 +42,7 @@ export class AlquilerController {
     return this.alquilerRepository.create(alquiler);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @get('/alquileres/count')
   @response(200, {
     description: 'Alquiler model count',
@@ -54,7 +54,7 @@ export class AlquilerController {
     return this.alquilerRepository.count(where);
   }
 
-  //@authenticate("asesor, admin, persona")
+  @authenticate("asesor, admin, persona")
   @get('/alquileres')
   @response(200, {
     description: 'Array of Alquiler model instances',
@@ -73,7 +73,7 @@ export class AlquilerController {
     return this.alquilerRepository.find(filter);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @patch('/alquileres')
   @response(200, {
     description: 'Alquiler PATCH success count',
@@ -93,7 +93,7 @@ export class AlquilerController {
     return this.alquilerRepository.updateAll(alquiler, where);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @get('/alquileres/{id}')
   @response(200, {
     description: 'Alquiler model instance',
@@ -110,7 +110,7 @@ export class AlquilerController {
     return this.alquilerRepository.findById(id, filter);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @patch('/alquileres/{id}')
   @response(204, {
     description: 'Alquiler PATCH success',
@@ -129,7 +129,7 @@ export class AlquilerController {
     await this.alquilerRepository.updateById(id, alquiler);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @put('/alquileres/{id}')
   @response(204, {
     description: 'Alquiler PUT success',
@@ -141,7 +141,7 @@ export class AlquilerController {
     await this.alquilerRepository.replaceById(id, alquiler);
   }
 
-  //@authenticate("asesor, admin")
+  @authenticate("asesor, admin")
   @del('/alquileres/{id}')
   @response(204, {
     description: 'Alquiler DELETE success',
