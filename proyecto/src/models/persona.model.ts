@@ -28,7 +28,7 @@ export class Persona extends Entity {
     type: 'string',
     required: true,
   })
-  nDocumento: string;
+  celular: string;
 
   @property({
     type: 'string',

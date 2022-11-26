@@ -1,15 +1,13 @@
-import {authenticate} from '@loopback/authentication';
 import {
-  repository,
+  repository
 } from '@loopback/repository';
 import {
-  param,
   get,
-  getModelSchemaRef,
+  getModelSchemaRef, param
 } from '@loopback/rest';
 import {
   Alquiler,
-  Vehiculo,
+  Vehiculo
 } from '../models';
 import {AlquilerRepository} from '../repositories';
 
@@ -19,7 +17,7 @@ export class AlquilerVehiculoController {
     public alquilerRepository: AlquilerRepository,
   ) { }
 
-  @authenticate("asesor, admin")
+  //@authenticate("asesor, admin")
   @get('/alquilers/{id}/vehiculo', {
     responses: {
       '200': {

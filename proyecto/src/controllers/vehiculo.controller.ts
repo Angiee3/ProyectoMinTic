@@ -1,22 +1,15 @@
-import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Vehiculo} from '../models';
 import {VehiculoRepository} from '../repositories';
@@ -27,7 +20,7 @@ export class VehiculoController {
     public vehiculoRepository : VehiculoRepository,
   ) {}
 
-  @authenticate("asesor, admin")
+  //@authenticate("asesor, admin")
   @post('/vehiculos')
   @response(200, {
     description: 'Vehiculo model instance',

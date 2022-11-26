@@ -1,15 +1,13 @@
-import {authenticate} from '@loopback/authentication';
 import {
-  repository,
+  repository
 } from '@loopback/repository';
 import {
-  param,
   get,
-  getModelSchemaRef,
+  getModelSchemaRef, param
 } from '@loopback/rest';
 import {
   Alquiler,
-  Persona,
+  Persona
 } from '../models';
 import {AlquilerRepository} from '../repositories';
 
@@ -19,11 +17,11 @@ export class AlquilerPersonaController {
     public alquilerRepository: AlquilerRepository,
   ) { }
 
-  @authenticate("asesor, admin")
-  @get('/alquilers/{id}/cliente', {
+  //@authenticate("asesor, admin")
+  @get('/alquilers/{id}/persona', {
     responses: {
       '200': {
-        description: 'Cliente belonging to Alquiler',
+        description: 'Persona belonging to Alquiler',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Persona)},
@@ -32,7 +30,7 @@ export class AlquilerPersonaController {
       },
     },
   })
-  async getCliente(
+  async getPersona(
     @param.path.string('id') id: typeof Alquiler.prototype.id,
   ): Promise<Persona> {
     return this.alquilerRepository.persona(id);

@@ -18,6 +18,7 @@ import {
   requestBody,
   response,
   HttpErrors,
+  oas,
 } from '@loopback/rest';
 import {Llaves} from '../config/llaves';
 import {Credenciales, Persona} from '../models';
@@ -50,7 +51,8 @@ export class PersonaController {
         datos: {
           nombre: p.nombres,
           correo: p.correo,
-          id: p.id
+          id: p.id,
+          rol: p.rol
         },
         tk :  token
       }
