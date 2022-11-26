@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   repository,
 } from '@loopback/repository';
@@ -18,6 +19,7 @@ export class AlquilerVehiculoController {
     public alquilerRepository: AlquilerRepository,
   ) { }
 
+  @authenticate("asesor, admin")
   @get('/alquilers/{id}/vehiculo', {
     responses: {
       '200': {

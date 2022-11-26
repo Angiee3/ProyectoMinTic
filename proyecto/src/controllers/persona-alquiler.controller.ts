@@ -16,20 +16,20 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {
-  Cliente,
+  Persona,
   Alquiler,
 } from '../models';
-import {ClienteRepository} from '../repositories';
+import {PersonaRepository} from '../repositories';
 
-export class ClienteAlquilerController {
+export class PersonaAlquilerController {
   constructor(
-    @repository(ClienteRepository) protected clienteRepository: ClienteRepository,
+    @repository(PersonaRepository) protected personaRepository: PersonaRepository,
   ) { }
 
-  @get('/clientes/{id}/alquilers', {
+  @get('/personas/{id}/alquilers', {
     responses: {
       '200': {
-        description: 'Array of Cliente has many Alquiler',
+        description: 'Array of Persona has many Alquiler',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Alquiler)},
@@ -42,38 +42,38 @@ export class ClienteAlquilerController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Alquiler>,
   ): Promise<Alquiler[]> {
-    return this.clienteRepository.alquilers(id).find(filter);
+    return this.personaRepository.alquilers(id).find(filter);
   }
 
-  @post('/clientes/{id}/alquilers', {
+  @post('/personas/{id}/alquilers', {
     responses: {
       '200': {
-        description: 'Cliente model instance',
+        description: 'Persona model instance',
         content: {'application/json': {schema: getModelSchemaRef(Alquiler)}},
       },
     },
   })
   async create(
-    @param.path.string('id') id: typeof Cliente.prototype.id,
+    @param.path.string('id') id: typeof Persona.prototype.id,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(Alquiler, {
-            title: 'NewAlquilerInCliente',
+            title: 'NewAlquilerInPersona',
             exclude: ['id'],
-            optional: ['clienteId']
+            optional: ['personaId']
           }),
         },
       },
     }) alquiler: Omit<Alquiler, 'id'>,
   ): Promise<Alquiler> {
-    return this.clienteRepository.alquilers(id).create(alquiler);
+    return this.personaRepository.alquilers(id).create(alquiler);
   }
 
-  @patch('/clientes/{id}/alquilers', {
+  @patch('/personas/{id}/alquilers', {
     responses: {
       '200': {
-        description: 'Cliente.Alquiler PATCH success count',
+        description: 'Persona.Alquiler PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -90,13 +90,13 @@ export class ClienteAlquilerController {
     alquiler: Partial<Alquiler>,
     @param.query.object('where', getWhereSchemaFor(Alquiler)) where?: Where<Alquiler>,
   ): Promise<Count> {
-    return this.clienteRepository.alquilers(id).patch(alquiler, where);
+    return this.personaRepository.alquilers(id).patch(alquiler, where);
   }
 
-  @del('/clientes/{id}/alquilers', {
+  @del('/personas/{id}/alquilers', {
     responses: {
       '200': {
-        description: 'Cliente.Alquiler DELETE success count',
+        description: 'Persona.Alquiler DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -105,6 +105,6 @@ export class ClienteAlquilerController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Alquiler)) where?: Where<Alquiler>,
   ): Promise<Count> {
-    return this.clienteRepository.alquilers(id).delete(where);
+    return this.personaRepository.alquilers(id).delete(where);
   }
 }

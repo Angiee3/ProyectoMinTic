@@ -1,5 +1,5 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {Cliente} from './cliente.model';
+import {Persona} from './persona.model';
 import {Vehiculo} from './vehiculo.model';
 
 @model()
@@ -29,8 +29,8 @@ export class Alquiler extends Entity {
   })
   estado: number;
 
-  @belongsTo(() => Cliente)
-  clienteId: string;
+  @belongsTo(() => Persona)
+  personaId: string;
 
   @belongsTo(() => Vehiculo)
   vehiculoId: string;

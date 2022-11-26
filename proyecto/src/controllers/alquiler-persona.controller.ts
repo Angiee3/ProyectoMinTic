@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   repository,
 } from '@loopback/repository';
@@ -8,23 +9,24 @@ import {
 } from '@loopback/rest';
 import {
   Alquiler,
-  Cliente,
+  Persona,
 } from '../models';
 import {AlquilerRepository} from '../repositories';
 
-export class AlquilerClienteController {
+export class AlquilerPersonaController {
   constructor(
     @repository(AlquilerRepository)
     public alquilerRepository: AlquilerRepository,
   ) { }
 
+  @authenticate("asesor, admin")
   @get('/alquilers/{id}/cliente', {
     responses: {
       '200': {
         description: 'Cliente belonging to Alquiler',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(Cliente)},
+            schema: {type: 'array', items: getModelSchemaRef(Persona)},
           },
         },
       },
@@ -32,7 +34,7 @@ export class AlquilerClienteController {
   })
   async getCliente(
     @param.path.string('id') id: typeof Alquiler.prototype.id,
-  ): Promise<Cliente> {
-    return this.alquilerRepository.cliente(id);
+  ): Promise<Persona> {
+    return this.alquilerRepository.persona(id);
   }
 }

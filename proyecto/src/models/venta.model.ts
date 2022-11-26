@@ -1,5 +1,5 @@
 import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
-import {Cliente} from './cliente.model';
+import {Persona} from './persona.model';
 import {Vehiculo} from './vehiculo.model';
 
 @model()
@@ -17,8 +17,8 @@ export class Venta extends Entity {
   })
   valor: number;
 
-  @belongsTo(() => Cliente)
-  clienteId: string;
+  @belongsTo(() => Persona)
+  personaId: string;
 
   @property({
     type: 'string',

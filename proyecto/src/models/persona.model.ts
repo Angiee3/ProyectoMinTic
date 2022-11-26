@@ -1,5 +1,7 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Alquiler} from './alquiler.model';
 import {Vehiculo} from './vehiculo.model';
+import {Venta} from './venta.model';
 
 @model()
 export class Persona extends Entity {
@@ -48,6 +50,12 @@ export class Persona extends Entity {
 
   @hasMany(() => Vehiculo)
   vehiculos: Vehiculo[];
+
+  @hasMany(() => Venta)
+  ventas: Venta[];
+
+  @hasMany(() => Alquiler)
+  alquilers: Alquiler[];
 
   constructor(data?: Partial<Persona>) {
     super(data);
